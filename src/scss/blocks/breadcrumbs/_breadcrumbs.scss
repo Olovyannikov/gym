@@ -1,0 +1,14 @@
+.breadcrumbs {
+  @include list-reset;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.breadcrumbs__link {
+  &:first-child {
+    &::after {
+      content: '/';
+    }
+  }
+}

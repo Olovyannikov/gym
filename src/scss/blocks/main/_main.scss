@@ -1,0 +1,7 @@
+.main__svg {
+  @include col;
+  @include size(8);
+  display: flex;
+  margin: 0 auto;
+  max-width: 927px;
+}

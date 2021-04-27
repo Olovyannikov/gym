@@ -1,0 +1,22 @@
+.lessons {
+  input[type="text"] {
+    width: 6%;
+  }
+}
+
+.lessons__lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 160px;
+}
+
+.lesson__group-title {
+  font-weight: 400;
+}
+
+.lessons__list {
+  @include list-reset;
+  li {
+    padding: 5px 0;
+  }
+}

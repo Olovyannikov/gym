@@ -27,6 +27,9 @@ body {
     > svg {
         display: none;
     }
+    &.menu_open {
+        overflow: hidden;
+    }
 }
 
 a {
@@ -66,6 +69,7 @@ img {
 }
 
 .overlay {
+    display: none;
     position: absolute;
     content: '';
     width: 100%;
@@ -75,6 +79,9 @@ img {
     right: 0;
     bottom: 0;
     background: rgba(0,0,0,0.2);
+    &.active {
+        display: block;
+    }
 }
 
 .container {
@@ -86,4 +93,18 @@ img {
     max-width: 1710px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+main {
+    z-index: -1;
+    padding-top: 80px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 33px;
+    line-height: 40px;
+    margin-top: 40px;
+    margin-bottom: 0;
+    text-transform: uppercase;
 }

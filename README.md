@@ -7,10 +7,10 @@
 6. [Webpack 5](https://webpack.js.org/);
 
 # View
-https://olovyannikov.github.io/gsap/build
+https://olovyannikov.github.io/gym/build
 
 # Source code
-https://github.com/Olovyannikov/gsap
+https://github.com/Olovyannikov/gym
 
 # Install
 
