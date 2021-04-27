@@ -1,0 +1,52 @@
+.nav__list {
+  @include list-reset;
+  position: fixed;
+  transition: .6s;
+  top: 80px;
+  left: -100%;
+  padding-top: 40px;
+  background: #fff;
+  height: 100vh;
+  width: 75%;
+  padding-left: 25px;
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
+  @media (max-width: 1439px) {
+    width: 75%;
+    padding-left: 5%;
+  }
+  @media (min-width: 1439px) {
+    padding-left: 5%;
+    width: 40%;
+  }
+  @media (min-width: 1880px) {
+    padding-left: 11%;
+  }
+  &_active {
+    left: 0;
+    .nav__link {
+      left: 0;
+      transition: 1s ;
+    }
+  }
+}
+
+.nav__link {
+  transition: .5s;
+  font-size: 18px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #000;
+  display: block;
+  max-width: 100%;
+  position: relative;
+  left: -100%;
+  &_hasSubMenu {
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 0;
+      right: 10%;
+    }
+  }
+}
