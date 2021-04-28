@@ -15,7 +15,7 @@ let path = {
             "!" + source_folder + "/**/_*.html",
         ],
         pug: [
-            source_folder + "/pug/pages/*.pug",
+            source_folder + "/pug/pages/**",
             "!" + source_folder + "/**/_*.pug",
         ],
         css: source_folder + "/scss/style.scss",

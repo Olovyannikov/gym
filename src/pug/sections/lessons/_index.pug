@@ -1,4 +1,4 @@
-.lessons
+section.lessons
     .lessons__container.container
         h1.lessons__title.title Занятия
         ul.breadcrumbs
@@ -15,15 +15,16 @@
                 label.nav__submenu-label(for='female') Женский
                     input.nav__submenu-radio(value='female' type='radio' name='sex' id='female')
                     span.nav__submenu-element
-                label.nav__submenu-label(for='age') Возраст
-                input.nav__submenu-input(type='text' name='age' id='age')
+                label.nav__submenu-label(for='age2') Возраст
+                input.nav__submenu-input(type='text' name='age' id='age2')
         .lessons__lists
             .lesson__group
                 h3.lesson__group-title Цикличные
                 ul.lessons__list
                     li Ходьба
                     li Езда на велосипеде
-                    li Бег
+                    li
+                        a(href='lessons/run') Бег
                     li Лыжная подготовка
                     li Катание на коньках
                     li Скандинавская ходьба
@@ -50,12 +51,12 @@
             .lesson__card
                 h4.lesson__title Занятие
                 p.lesson__descr Выбери свой уровень и выполни упражнения
-                a(href='/lesson.html').btn.green.lesson__link далее
+                a(href='lesson.html').btn.green.lesson__link далее
             .lesson__card
                 h4.lesson__title Глоссарий
                 p.lesson__descr Узнай историю и интересные факты
-                a(href='/glossary.html').btn.green.lesson__link далее
+                a(href='glossary.html').btn.green.lesson__link далее
             .lesson__card
                 h4.lesson__title График занятий
                 p.lesson__descr Составить график занятий на неделю, месяц и т.д.
-                a(href='/schedule.html').btn.green.lesson__link далее
+                a(href='schedule.html').btn.green.lesson__link далее
