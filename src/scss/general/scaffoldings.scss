@@ -108,3 +108,22 @@ main {
     margin-bottom: 0;
     text-transform: uppercase;
 }
+
+.btn {
+    @include list-reset;
+    border-radius: 19px;
+    font-family: inherit;
+    color: #000000;
+    padding: 6px 29px;
+    font-size: 18px;
+    line-height: 21.6px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+    transition: .3s;
+    &.green {
+        border: 2px solid $c-green;
+        &:hover {
+            background: $c-green;
+            color: #fff;
+        }
+    }
+}

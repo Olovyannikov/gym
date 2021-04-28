@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 160px;
+  margin-bottom: 40px;
 }
 
 .lesson__group-title {
@@ -19,4 +20,46 @@
   li {
     padding: 5px 0;
   }
+}
+
+.lesson__warning {
+  margin-bottom: 90px;
+}
+
+.lesson__cards {
+  @include row-flex;
+  margin-bottom: 130px;
+  justify-content: center;
+  @include lg-block {
+    justify-content: space-between;
+  }
+}
+
+.lesson__card {
+  @include col;
+  @include size(12);
+  background: #fff;
+  padding-bottom: 100px;
+  margin-bottom: 20px;
+  @include md-block {
+    @include size(6)
+  }
+  @include lg-block {
+    @include size(4)
+  }
+}
+
+.lesson__title {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.lesson__descr {
+  margin-bottom: 170px;
+}
+
+.lesson__link {
+  margin-left: 30px;
 }
