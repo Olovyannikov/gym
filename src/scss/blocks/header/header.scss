@@ -36,9 +36,9 @@
   @include btn-reset;
   width: 31px;
   height: 15px;
-  display: flex;
   align-items: center;
   margin-right: 30px;
+  display: flex;
   span {
     align-self: flex-end;
     display: block;
@@ -76,5 +76,8 @@
         transform: rotate(-45deg);
       }
     }
+  }
+  @include md-block {
+    display: none;
   }
 }
