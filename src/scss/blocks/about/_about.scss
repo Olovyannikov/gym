@@ -6,39 +6,70 @@
   padding-bottom: 160px;
   margin-bottom: 140px;
   overflow: hidden;
+  z-index: 2;
   &::after {
     position: absolute;
+  }
+  .waves {
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+  }
+  .about__basketball-ring {
+    position: absolute;
+    top: 120px;
+    right: -120px;
+    min-width: 600px;
+    z-index: -1;
+    @include md-block {
+      min-width: 1000px;
+      top: -55px;
+      right: -180px;
+    }
   }
 }
 
 .about__basketball {
   position: absolute;
-  right: -10%;
-  top: -10%;
+  width: 240px;
+  top: 220px;
+  right: 30%;
+  z-index: -1;
+  animation: basketball 5s forwards;
   img {
     width: 1000px;
     height: auto;
   }
+  @include md-block {
+    right: 320px;
+    width: 300px;
+    top: 120px;
+    transform: translate(-50%, 50%);
+  }
 }
+
+@keyframes basketball {
+  0% {
+    transform: translate(-50%, 50%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
 
 .about__hero {
   z-index: 1;
   position: absolute;
-  animation: basketball 5s forwards;
+  animation: basketball 10s forwards;
   img {
     width: 300px;
     height: auto;
   }
 }
 
-@keyframes basketball {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(340%, -60%);
-  }
+.about__container {
+  z-index: 10;
 }
 
 .about__info {

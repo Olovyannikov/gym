@@ -1,25 +1,30 @@
 .nav__list {
   @include list-reset;
-  position: fixed;
+  //position: fixed;
+  position: static;
+  display: flex;
+  gap: 60px;
   transition: .6s;
-  top: 80px;
-  left: -100%;
-  padding-top: 40px;
+  margin-left: 70px;
+  align-items: center;
+  //top: 80px;
+  //left: -100%;
+  //padding-top: 40px;
   background: #fff;
-  height: 100vh;
-  padding-bottom: 5%;
-  padding-left: 25px;
-  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
+  //height: 100vh;
+  //padding-bottom: 5%;
+  //padding-left: 25px;
+  //box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
   @media (max-width: 1439px) {
-    width: 95%;
-    padding-left: 5%;
+    //width: 95%;
+    //padding-left: 5%;
   }
   @media (min-width: 1439px) {
-    padding-left: 5%;
-    width: 40%;
+    //padding-left: 5%;
+    //width: 40%;
   }
   @media (min-width: 1880px) {
-    padding-left: 10%;
+    //padding-left: 10%;
   }
 
   &_active {
@@ -44,8 +49,8 @@
   display: block;
   max-width: 100%;
   position: relative;
-  left: -100%;
-  margin-bottom: 20px;
+  //left: -100%;
+  //margin-bottom: 20px;
 
   &_hasSubMenu {
     position: relative;

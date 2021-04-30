@@ -1,3 +1,14 @@
 .cards {
   background-image: linear-gradient(to bottom, #4dc29a 0%, #5cc478 52%, #99cd45 100%);
+  svg {
+    transform: rotate(180deg);
+    position: relative;
+  }
+  use {
+    animation: unset;
+  }
+}
+
+.cards__container {
+  padding-top: 250px;
 }

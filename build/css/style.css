@@ -523,6 +523,10 @@ body.menu_open {
   overflow: hidden;
 }
 
+body.overflow {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
   font-family: inherit;
@@ -669,11 +673,53 @@ main {
 }
 
 .columns__aside-title {
-  margin: 0;
-  margin-bottom: 60px;
+  margin: 0 0 60px;
   font-weight: 500;
   font-size: 18px;
 }
+
+/* Waves effect */
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  /*Fix for safari gap*/
+  min-height: 100px;
+  max-height: 150px;
+}
+
+.parallax > use {
+  -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+          animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+@-webkit-keyframes move-forever {
+  0% {
+    -webkit-transform: translate3d(-90px, 0, 0);
+            transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(85px, 0, 0);
+            transform: translate3d(85px, 0, 0);
+  }
+}
+
+@keyframes move-forever {
+  0% {
+    -webkit-transform: translate3d(-90px, 0, 0);
+            transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(85px, 0, 0);
+            transform: translate3d(85px, 0, 0);
+  }
+}
+
+/*Shrinking for mobile*/
 
 .preloader {
   position: fixed;
@@ -853,7 +899,7 @@ main {
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 10;
   -webkit-transition: all .3s ease;
   -o-transition: all .3s ease;
   transition: all .3s ease;
@@ -868,6 +914,12 @@ main {
 .header__logo-svg {
   width: 60px;
   height: 45px;
+}
+
+.header__social {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
 
 .header__wrapper {
@@ -892,6 +944,15 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.header__nav {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 
 .header__menu-button {
@@ -992,19 +1053,19 @@ main {
   padding: 0;
   margin: 0;
   list-style: none;
-  position: fixed;
+  position: static;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 60px;
   -webkit-transition: .6s;
   -o-transition: .6s;
   transition: .6s;
-  top: 80px;
-  left: -100%;
-  padding-top: 40px;
+  margin-left: 70px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #fff;
-  height: 100vh;
-  padding-bottom: 5%;
-  padding-left: 25px;
-  -webkit-box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
 .nav__list_active {
@@ -1035,8 +1096,6 @@ main {
   display: block;
   max-width: 100%;
   position: relative;
-  left: -100%;
-  margin-bottom: 20px;
 }
 
 .nav__link_hasSubMenu {
@@ -1185,16 +1244,35 @@ main {
   padding-bottom: 160px;
   margin-bottom: 140px;
   overflow: hidden;
+  z-index: 2;
 }
 
 .about::after {
   position: absolute;
 }
 
+.about .waves {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
+
+.about .about__basketball-ring {
+  position: absolute;
+  top: 120px;
+  right: -120px;
+  min-width: 600px;
+  z-index: -1;
+}
+
 .about__basketball {
   position: absolute;
-  right: -10%;
-  top: -10%;
+  width: 240px;
+  top: 220px;
+  right: 30%;
+  z-index: -1;
+  -webkit-animation: basketball 5s forwards;
+          animation: basketball 5s forwards;
 }
 
 .about__basketball img {
@@ -1202,11 +1280,35 @@ main {
   height: auto;
 }
 
+@-webkit-keyframes basketball {
+  0% {
+    -webkit-transform: translate(-50%, 50%);
+            transform: translate(-50%, 50%);
+  }
+
+  100% {
+    -webkit-transform: translate(0%, 0%);
+            transform: translate(0%, 0%);
+  }
+}
+
+@keyframes basketball {
+  0% {
+    -webkit-transform: translate(-50%, 50%);
+            transform: translate(-50%, 50%);
+  }
+
+  100% {
+    -webkit-transform: translate(0%, 0%);
+            transform: translate(0%, 0%);
+  }
+}
+
 .about__hero {
   z-index: 1;
   position: absolute;
-  -webkit-animation: basketball 5s forwards;
-          animation: basketball 5s forwards;
+  -webkit-animation: basketball 10s forwards;
+          animation: basketball 10s forwards;
 }
 
 .about__hero img {
@@ -1214,28 +1316,8 @@ main {
   height: auto;
 }
 
-@-webkit-keyframes basketball {
-  0% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-
-  100% {
-    -webkit-transform: translate(340%, -60%);
-            transform: translate(340%, -60%);
-  }
-}
-
-@keyframes basketball {
-  0% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-
-  100% {
-    -webkit-transform: translate(340%, -60%);
-            transform: translate(340%, -60%);
-  }
+.about__container {
+  z-index: 10;
 }
 
 .about__info {
@@ -1267,6 +1349,7 @@ main {
 .intro {
   background: #f7f7f7;
   z-index: 2;
+  padding-bottom: 200px;
 }
 
 .intro__container {
@@ -1286,10 +1369,101 @@ main {
   margin: 0;
 }
 
+.intro__descr {
+  width: 50%;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.intro__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 30px;
+  overflow: visible;
+}
+
+.intro__list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  overflow: visible;
+}
+
+.intro__list-item svg {
+  width: 40px;
+  height: 40px;
+  fill: #61be6a;
+  margin-bottom: 60px;
+}
+
+.intro__list-item span {
+  width: 70%;
+}
+
+.intro__list-item::after {
+  position: absolute;
+  content: '';
+  width: 130%;
+  height: 100%;
+  background-image: url("../img/icons/green-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  top: 40%;
+}
+
+.intro__list-item:first-child::after {
+  z-index: 10;
+}
+
+.intro__list-item:nth-child(2)::after {
+  z-index: 9;
+}
+
+.intro__list-item:last-child::after {
+  z-index: 8;
+}
+
 .cards {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#4dc29a), color-stop(52%, #5cc478), to(#99cd45));
   background-image: -o-linear-gradient(top, #4dc29a 0%, #5cc478 52%, #99cd45 100%);
   background-image: linear-gradient(to bottom, #4dc29a 0%, #5cc478 52%, #99cd45 100%);
+}
+
+.cards svg {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+  position: relative;
+}
+
+.cards use {
+  -webkit-animation: unset;
+          animation: unset;
+}
+
+.cards__container {
+  padding-top: 250px;
 }
 
 @media screen and (min-width: 992px) {
@@ -1314,6 +1488,21 @@ main {
   .header__menu-button {
     display: none;
   }
+
+  .about .about__basketball-ring {
+    min-width: 1000px;
+    top: -55px;
+    right: -180px;
+  }
+
+  .about__basketball {
+    right: 320px;
+    width: 300px;
+    top: 120px;
+    -webkit-transform: translate(-50%, 50%);
+        -ms-transform: translate(-50%, 50%);
+            transform: translate(-50%, 50%);
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -1328,22 +1517,9 @@ main {
   }
 }
 
-@media (min-width: 1439px) {
-  .nav__list {
-    padding-left: 5%;
-    width: 40%;
-  }
-}
-
-@media (min-width: 1880px) {
-  .nav__list {
-    padding-left: 10%;
-  }
-}
-
-@media (max-width: 1439px) {
-  .nav__list {
-    width: 95%;
-    padding-left: 5%;
+@media (max-width: 768px) {
+  .waves {
+    height: 15vh;
+    min-height: 40px;
   }
 }
