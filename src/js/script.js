@@ -1,6 +1,7 @@
 //import modules
-import {gsap} from "gsap";
-//import { default as bezier } from "./vendor/bezier";
+import gsap from "gsap";
+import bezier from "./vendor/bezier";
+bezier();
 import startAnimation from "./modules/start-animation";
 import {default as toggleMenu} from "./modules/menu-toggle";
 

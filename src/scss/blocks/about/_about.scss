@@ -35,7 +35,7 @@
   top: 220px;
   right: 30%;
   z-index: -1;
-  animation: basketball 5s forwards;
+  animation: basketball 10s forwards;
   img {
     width: 1000px;
     height: auto;
@@ -83,6 +83,7 @@
 }
 
 .about__link {
+  justify-content: center;
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -90,5 +91,8 @@
   text-transform: uppercase;
   svg {
     margin-left: 20px;
+  }
+  @include md-block {
+    justify-content: flex-start;
   }
 }

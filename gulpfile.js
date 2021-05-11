@@ -2,265 +2,261 @@ let project_folder = "build";
 let source_folder = "src";
 
 let path = {
-    build: {
-        html: project_folder + "/",
-        css: project_folder + "/css/",
-        js: project_folder + "/js/",
-        img: project_folder + "/img/",
-        fonts: project_folder + "/fonts/"
-    },
-    src: {
-        html: [
-            source_folder + "/html/*.html",
-            "!" + source_folder + "/**/_*.html",
-        ],
-        pug: [
-            source_folder + "/pug/pages/**",
-            "!" + source_folder + "/**/_*.pug",
-        ],
-        css: source_folder + "/scss/style.scss",
-        js: source_folder + "/js/script.js",
-        img: source_folder + "/img/**/*.{png,jpeg,jpg,gif,ico,webp,svg}",
-        fonts: source_folder + "/fonts/*.{woff,woff2,ttf,svg}",
-    },
-    watch: {
-        html: source_folder + "/**/*.html",
-        pug: source_folder + "/**/*.pug",
-        css: source_folder + "/scss/**/*.scss",
-        js: source_folder + "/js/**/*.js",
-        img: source_folder + "/img/**/*.{png,jpeg,jpg,svg,gif,ico,webp}",
-    },
-    clean: "./" + project_folder + "/",
+  build: {
+    html: project_folder + "/",
+    css: project_folder + "/css/",
+    js: project_folder + "/js/",
+    img: project_folder + "/img/",
+    fonts: project_folder + "/fonts/"
+  },
+  src: {
+    html: [
+      source_folder + "/html/*.html",
+      "!" + source_folder + "/**/_*.html",
+    ],
+    pug: [
+      source_folder + "/pug/pages/*.pug",
+      "!" + source_folder + "/**/_*.pug",
+    ],
+    css: source_folder + "/scss/style.scss",
+    js: source_folder + "/js/script.js",
+    img: source_folder + "/img/**/*.{png,jpeg,jpg,gif,ico,webp,svg}",
+    fonts: source_folder + "/fonts/*.{woff,woff2,ttf,svg}",
+  },
+  watch: {
+    html: source_folder + "/**/*.html",
+    pug: source_folder + "/**/*.pug",
+    css: source_folder + "/scss/**/*.scss",
+    js: source_folder + "/js/**/*.js",
+    img: source_folder + "/img/**/*.{png,jpeg,jpg,svg,gif,ico,webp}",
+  },
+  clean: "./" + project_folder + "/",
 };
 
-//Объявляем переменные
-let { src, dest } = require("gulp"),
-    gulp = require("gulp"),
-    smartGrid = require("smart-grid"),
-    browsersync = require("browser-sync").create(), //Инициализация локального сервера
-    fileinclude = require("gulp-file-include"), // Для подключения файлов друг в друга
-    del = require("del"), //Удаление папки build
-    scss = require("gulp-sass"),
-    autoprefixer = require("gulp-autoprefixer"),
-    group_media = require("gulp-group-css-media-queries"),
-    clean_css = require("gulp-clean-css"),
-    rename = require("gulp-rename"),
-    uglify = require("gulp-uglify-es").default,
-    imagemin = require("gulp-imagemin"),
-    webp = require("gulp-webp"),
-    svgSprite = require("gulp-svg-sprite"),
-    svgmin = require("gulp-svgmin"),
-    cheerio = require("gulp-cheerio"),
-    svgClean = require("gulp-cheerio-clean-svg"),
-    ttf2woff = require("gulp-ttf2woff"),
-    ttf2woff2 = require("gulp-ttf2woff2"),
-    pug = require("gulp-pug"),
-    plumber = require("gulp-plumber"),
-    notify = require("gulp-notify"),
-    webpack = require("webpack"),
-    webpackStream = require("webpack-stream");
+const {src, dest, series, watch} = require('gulp');
+const autoprefixer = require('gulp-autoprefixer');
+const babel = require('gulp-babel');
+const browserSync = require('browser-sync').create();
+const concat = require('gulp-concat');
+const cleanCSS = require('gulp-clean-css');
+const del = require('del');
+const fileInclude = require('gulp-file-include');
+const gulpif = require('gulp-if');
+const htmlmin = require('gulp-htmlmin');
+const image = require('gulp-image');
+const notify = require('gulp-notify');
+const plumber = require("gulp-plumber");
+const pug = require("gulp-pug");
+const rev = require('gulp-rev');
+const revDel = require('gulp-rev-delete-original');
+const revRewrite = require('gulp-rev-rewrite');
+const rename = require("gulp-rename");
+const sass = require('gulp-sass');
+const smartGrid = require("smart-grid");
+const sourcemaps = require('gulp-sourcemaps');
+const svgSprite = require('gulp-svg-sprite');
+const ttf2woff2 = require('gulp-ttf2woff2');
+const uglify = require('gulp-uglify-es').default;
+const webpack = require("webpack");
+const webpackStream = require("webpack-stream");
+const {readFileSync} = require('fs');
 
-function browserSync() {
-    browsersync.init({
-        server: {
-            baseDir: "./" + project_folder + "/",
+let isProd = false; // dev by default
+let isGrid = false; // smartgrid or not
+
+const clean = () => {
+  return del(path.clean)
+}
+
+//svg sprite
+const svgSprites = () => {
+  return src([source_folder + "/img/svg/**.svg"])
+    .pipe(svgSprite({
+      mode: {
+        stack: {
+          sprite: "../sprite.svg" //sprite file name
+        }
+      },
+    }))
+    .pipe(dest(path.build.img));
+}
+
+const styles = () => {
+  return src(path.src.css)
+    .pipe(gulpif(!isProd, sourcemaps.init()))
+    .pipe(sass().on("error", notify.onError()))
+    .pipe(autoprefixer({
+      cascade: false,
+    }))
+    .pipe(
+      rename({
+        extname: ".min.css",
+      })
+    )
+    .pipe(gulpif(isProd, cleanCSS({level: 2})))
+    .pipe(gulpif(!isProd, sourcemaps.write('.')))
+
+    .pipe(dest(path.build.css))
+    .pipe(browserSync.stream());
+};
+
+const stylesBackend = () => {
+  return src(path.src.css)
+    .pipe(sass().on("error", notify.onError()))
+    .pipe(autoprefixer({
+      cascade: false,
+    }))
+    .pipe(dest(path.build.css))
+};
+
+const scripts = () => {
+  return src(path.src.js)
+    .pipe(
+      webpackStream({
+        mode: "production",
+        output: {
+          filename: "script.js",
         },
-        port: 3000,
-        notify: false,
-    });
-}
-
-function pug2html() {
-    return src(path.src.pug)
-        .pipe(
-            plumber({
-                errorHandler: notify.onError(function (err) {
-                    return {
-                        title: "Pug",
-                        sound: false,
-                        message: err.message,
-                    };
-                }),
-            })
-        )
-        .pipe(
-            pug({
-                pretty: true,
-            })
-        )
-        .pipe(dest(path.build.html))
-        .pipe(browsersync.stream());
-}
-
-function css() {
-    return src(path.src.css)
-        .pipe(
-            scss({
-                outputStyle: "expanded",
-            })
-        )
-        .pipe(group_media())
-        .pipe(
-            autoprefixer({
-                overrideBrowserslist: ["last 5 versions"],
-                cascade: true,
-            })
-        )
-        .pipe(dest(path.build.css))
-        .pipe(
-            clean_css({
-                level: {
-                    1: {
-                        all: true,
-                        normalizeUrls: false,
-                    },
-                    2: {
-                        restructureRules: true,
-                    },
+        module: {
+          rules: [
+            {
+              test: /\.m?js$/,
+              exclude: /(node_modules|bower_components)/,
+              use: {
+                loader: "babel-loader",
+                options: {
+                  presets: ["@babel/preset-env"],
                 },
-            })
-        )
-        .pipe(
-            rename({
-                extname: ".min.css",
-            })
-        )
-        .pipe(dest(path.build.css))
-        .pipe(browsersync.stream());
+              },
+            },
+          ],
+        },
+        plugins: [
+          new webpack.ContextReplacementPlugin(
+            /moment[/\\]locale$/,
+            /ru/
+          ),
+        ],
+      })
+    )
+    .pipe(dest(path.build.js))
+    .pipe(uglify())
+    .pipe(
+      rename({
+        extname: ".min.js",
+      })
+    )
+    .pipe(dest(path.build.js))
+    .pipe(browserSync.stream());
 }
 
-function js() {
-    return src(path.src.js)
-        .pipe(
-            webpackStream({
-                mode: "production",
-                output: {
-                    filename: "script.js",
-                },
-                module: {
-                    rules: [
-                        {
-                            test: /\.m?js$/,
-                            exclude: /(node_modules|bower_components)/,
-                            use: {
-                                loader: "babel-loader",
-                                options: {
-                                    presets: ["@babel/preset-env"],
-                                },
-                            },
-                        },
-                    ],
-                },
-                plugins: [
-                    new webpack.ContextReplacementPlugin(
-                        /moment[/\\]locale$/,
-                        /ru/
-                    ),
-                ],
-            })
-        )
-        .pipe(dest(path.build.js))
-        .pipe(uglify())
-        .pipe(
-            rename({
-                extname: ".min.js",
-            })
-        )
-        .pipe(dest(path.build.js))
-        .pipe(browsersync.stream());
+const resources = () => {
+  return src(source_folder + '/assets/**')
+    .pipe(dest(project_folder + '/assets'))
 }
 
-function images() {
-    return src(path.src.img)
-        .pipe(
-            webp({
-                quality: 100,
-            })
-        )
-        .pipe(dest(path.build.img))
-        .pipe(src(path.src.img))
-        .pipe(
-            imagemin({
-                progressive: true,
-                svgoPlugins: [{ removeViewBox: false }],
-                interlaced: true,
-                optimizationLevel: 3,
-            })
-        )
-        .pipe(dest(path.build.img))
-        .pipe(browsersync.stream());
+const fonts = () => {
+  return src(path.src.fonts)
+    .pipe(ttf2woff2())
+    .pipe(dest(path.build.fonts))
 }
 
-function fonts() {
-    src(path.src.fonts).pipe(ttf2woff()).pipe(dest(path.build.fonts));
-    return src(path.src.fonts).pipe(ttf2woff2()).pipe(dest(path.build.fonts));
+const images = () => {
+  return src(path.src.img)
+    .pipe(gulpif(isProd, image()))
+    .pipe(dest(path.build.img))
+};
+
+const pug2html = () => {
+  return src(path.src.pug)
+    .pipe(
+      plumber({
+        errorHandler: notify.onError(function (err) {
+          return {
+            title: "Pug",
+            sound: false,
+            message: err.message,
+          };
+        }),
+      })
+    )
+    .pipe(
+      pug({
+        pretty: true,
+      })
+    )
+    .pipe(dest(path.build.html))
+    .pipe(browserSync.stream());
 }
 
-function svgsprite() {
-    return gulp
-        .src([source_folder + "/img/icons/*.svg"])
-        .pipe(
-            cheerio(
-                svgClean({
-                    removeSketchType: true,
-                    removeEmptyGroup: true,
-                    removeEmptyDefs: true,
-                    removeEmptyLines: true,
-                    removeComments: true,
-                    tags: ["title", "desc"],
-                    attributes: ["style", "fill", "clip*", "stroke*"],
-                })
-            )
-        )
-        .pipe(
-            svgmin({
-                cleanupListOfValues: true,
-            })
-        )
-        .pipe(
-            svgSprite({
-                mode: {
-                    stack: {
-                        sprite: "../icons/icons.svg",
-                    },
-                },
-            })
-        )
-        .pipe(dest(path.build.img));
+const watchFiles = () => {
+  browserSync.init({
+    server: {
+      baseDir: "./" + project_folder + "/",
+    },
+  });
+
+  watch(path.watch.css, styles);
+  watch(path.watch.js, scripts);
+  //watch('./src/partials/*.html', htmlInclude);
+  watch(path.watch.pug, pug2html);
+  watch(source_folder + '/assets', resources);
+  watch(path.watch.img, images);
+  //watch('./src/img/**/*.{jpg,jpeg,png}', images);
+  watch(source_folder + '/img/svg/**.svg', svgSprites);
+  watch('./smartgrid.js', grid);
 }
 
-function watchFiles() {
-    gulp.watch([path.watch.pug], pug2html);
-    gulp.watch([path.watch.css], { usePolling: true }, css);
-    gulp.watch([path.watch.js], js);
-    gulp.watch([path.watch.img], images);
-    gulp.watch('./smartgrid.js', grid);
+const cache = () => {
+  return src('build/**/*.{css,js,svg,png,jpg,jpeg,woff2}', {
+    base: 'build'
+  })
+    .pipe(rev())
+    .pipe(revDel())
+    .pipe(dest('build'))
+    .pipe(rev.manifest('rev.json'))
+    .pipe(dest('build'));
+};
+
+const rewrite = () => {
+  const manifest = readFileSync('build/rev.json');
+  src('build/css/*.css')
+    .pipe(revRewrite({
+      manifest
+    }))
+    .pipe(dest('build/css'));
+  return src('build/**/*.html')
+    .pipe(revRewrite({
+      manifest
+    }))
+    .pipe(dest('build'));
 }
 
-function clean() {
-    return del(path.clean);
+const htmlMinify = () => {
+  return src('app/**/*.html')
+    .pipe(htmlmin({
+      collapseWhitespace: true
+    }))
+    .pipe(dest('app'));
 }
 
-function grid(callback) {
-    delete require.cache[require.resolve('./smartgrid.js')];
-    let settings = require('./smartgrid.js');
-    smartGrid(source_folder + '/scss/vendor', settings);
-    callback();
+const toProd = (done) => {
+  isProd = true;
+  done();
+};
+
+const grid = (callback) => {
+  isGrid = true;
+  delete require.cache[require.resolve('./smartgrid.js')];
+  let settings = require('./smartgrid.js');
+  smartGrid(source_folder + '/scss/vendor', settings);
+  callback();
 }
 
-let build = gulp.series(
-    clean, images, svgsprite, pug2html,
-    gulp.parallel( js, css, fonts)
-);
-let watch = gulp.parallel(build, watchFiles, browserSync);
+exports.default = series(clean, grid, pug2html, scripts, styles, resources, fonts, images, svgSprites, watchFiles);
 
-exports.grid = grid;
-exports.pug2html = pug2html;
-exports.fonts = fonts;
-exports.svgsprite = svgsprite;
-exports.images = images;
-exports.js = js;
-exports.css = css;
-exports.build = build;
-exports.watch = watch;
-exports.default = watch;
+exports.build = series(toProd, grid, clean, pug2html, scripts, styles, resources, fonts, images, svgSprites);
+
+exports.cache = series(cache, rewrite);
+
+exports.backend = series(toProd, grid, clean, pug2html, stylesBackend, resources, fonts, images, svgSprites);

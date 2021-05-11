@@ -1,5 +1,4 @@
 block variables
-
 <!DOCTYPE html>
 html(lang="ru")
     head
@@ -10,12 +9,12 @@ html(lang="ru")
         title #{title}
 
     body
-        include ./../../../build/img/icons/icons.svg
+        include ./../../../build/img/sprite.svg
         include ../sections/components/_preloader.pug
         //include ./../mixins/_debug
         include ../sections/components/overlay/_overlay.pug
         include ../sections/components/header/_header.pug
         main.main
             block content
-        //-include ../sections/components/footer/_footer.pug
+        include ../sections/components/footer/_footer.pug
         script(src="js/script.min.js")

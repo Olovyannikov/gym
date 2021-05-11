@@ -15,11 +15,13 @@
 }
 
 .intro__descr {
-  width: 50%;
   font-size: 18px;
   line-height: 1.4;
   text-align: center;
   margin-bottom: 50px;
+  @include md-block {
+    width: 50%;
+  }
 }
 
 .intro__list {
@@ -52,7 +54,7 @@
     content: '';
     width: 130%;
     height: 100%;
-    background-image: url('../img/icons/green-arrow.svg');
+    background-image: url('../img/svg/green-arrow.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     top: 40%;

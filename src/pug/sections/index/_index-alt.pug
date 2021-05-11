@@ -6,14 +6,14 @@ section.about
             a(href='test.html').about__link.arrow-link Узнай свой уровень подготовки
                 svg(width='30' height='30')
                     use(href="#small-black-arrow")
-    svg.waves(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewbox='0 24 150 28' preserveaspectratio='none' shape-rendering='auto')
+    svg.waves(xmlns='http://www.w3.org/2000/svg' viewbox='0 24 150 28' preserveaspectratio='none' shape-rendering='auto')
         defs
             path#gentle-wave(d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z')
         g.parallax
             use(href='#gentle-wave' x='48' y='7' fill='#f7f7f7')
 
-    img(src='img/icons/basketball-ring.svg').about__basketball-ring
-    img(src='img/icons/basketball.svg').about__basketball
+    img(src='img/svg/basketball-ring.svg').about__basketball-ring
+    img(src='img/svg/basketball.svg').about__basketball
 
 section.intro
     .intro__container.container
@@ -37,17 +37,22 @@ section.intro
                 svg
                     use(href="#timer")
                 span проверь свой&nbsp;результат
-.cards
-    svg.waves(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewbox='0 24 150 28' preserveaspectratio='none' shape-rendering='auto')
+section.cards
+    svg.waves(xmlns='http://www.w3.org/2000/svg' viewbox='0 24 150 28' preserveaspectratio='none' shape-rendering='auto')
         defs
             path#gentle-wave(d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z')
         g.parallax
             use(href='#gentle-wave' x='48' y='7' fill='#f7f7f7')
+    .cards__top-runners
+      img(src='img/svg/man-1.svg')
+      img(src='img/svg/man-2.svg')
+      img(src='img/svg/man-3.svg')
+      img(src='img/svg/man-4.svg')
     .cards__container.container
         h2.cards__title.title Спорт для тебя!
         ul.cards__list
             li.cards__list-item
-                h4.card__title Сайт - энциклопедия
+                h4.card__title Сайт — энциклопедия
                 p.card__descr Ты можешь заниматься спортом не выходя из дома Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium alias aperiam aut, consequuntur corporis cum distinctio dolore eveniet fuga laboriosam quaerat quam ratione rerum saepe, sapiente velit veritatis, vitae.
                 a(href="#").card__link.link Подробнее
             li.cards__list-item
@@ -57,5 +62,29 @@ section.intro
             li.cards__list-item
                 h4.card__title Дома или на улице
                 p.card__descr Ты можешь заниматься спортом не выходя из дома Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eum explicabo in numquam obcaecati porro quia soluta vero. Ad, alias dolores doloribus est eveniet fugiat illo iure laborum vel vitae.
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aut cumque deleniti laborum optio similique temporibus tenetur, veniam? Deserunt praesentium quisquam quod temporibus voluptate? Consequatur fuga illum impedit in ipsum.
                 a(href="#").card__link.link Подробнее
-        img.cards__image(src='img/icons/laydown-girl.svg')
+        img.cards__image(src='img/svg/laydown-girl.svg')
+    svg.waves(xmlns='http://www.w3.org/2000/svg' viewbox='0 24 150 28' preserveaspectratio='none' shape-rendering='auto')
+      defs
+        path#gentle-wave(d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z')
+      g.parallax
+        use(href='#gentle-wave' x='12' y='7' fill='#f7f7f7')
+
+section.post-scriptum
+  .post-scriptum__container.container
+    h2.post-scriptum__title.title Вместе веселее!
+    p.post-scriptum__descr Занимайтесь спортом вместе с друзьями и семьей. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend sagittis turpis at convallis. Vestibulum pellentesque dapibus imperdiet. Aliquam scelerisque mauris sit amet neque porta, sit amet maximus massa posuere. Nulla lobortis scelerisque quam, at placerat justo ultrices.
+  .post-scriptum__link
+    .post-scriptum__cyclist
+      img(src='img/sprite.svg#cyclist-1')
+      img(src='img/sprite.svg#cyclist-2')
+    svg.waves(xmlns='http://www.w3.org/2000/svg' viewbox='0 24 150 28' preserveaspectratio='none' shape-rendering='auto')
+      defs
+        path#gentle-wave(d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z')
+      g.parallax
+        use(href='#gentle-wave' x='15' y='7' fill='#f7f7f7')
+    a(href='#')
+      | Начни заниматься спортом сейчас!
+      svg(width='30' height='30')
+        use(href='#small-black-arrow')

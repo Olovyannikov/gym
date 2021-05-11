@@ -1,14 +1,122 @@
 .cards {
   background-image: linear-gradient(to bottom, #4dc29a 0%, #5cc478 52%, #99cd45 100%);
-  svg {
+  svg:first-child {
     transform: rotate(180deg);
     position: relative;
   }
   use {
     animation: unset;
   }
+
+  margin-bottom: 310px;
+}
+
+.cards__top-runners {
+  display: flex;
+  align-items: center;
+  position: relative;
+  img {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 250px;
+    &:first-child {
+      display: none;
+      @include md-block {
+        display: block;
+      }
+    }
+    &:nth-child(2) {
+      left: -80px;
+      top: -170px;
+      @include md-block {
+        left: 20%;
+        top: -200px;
+      }
+    }
+    &:nth-child(3) {
+      left: 45%;
+      top: -160px;
+      display: none;
+      @include md-block {
+        display: block;
+      }
+    }
+    &:last-child {
+      right: 0;
+    }
+  }
 }
 
 .cards__container {
-  padding-top: 250px;
+  padding-top: 180px;
+}
+
+.cards__title {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.cards__list {
+  @include list-reset;
+  @include row-flex;
+  justify-content: space-between;
+  margin-bottom: 110px;
+}
+
+.cards__list-item {
+  @include col;
+  @include size(12);
+  margin-bottom: 20px;
+  padding: 20px 20px 40px;
+  background: #fff;
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @include lg-block {
+    @include size(4);
+    margin-bottom: 0;
+  }
+}
+
+.card__title {
+  margin: 0;
+  text-transform: uppercase;
+  padding-top: 20px;
+}
+
+.card__descr {
+  line-height: rem-calc(20);
+}
+
+.card__link {
+  position: relative;
+  display: flex;
+  padding-right: 60px;
+  align-items: center;
+  margin-top: auto;
+  text-decoration: underline;
+  text-transform: uppercase;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    display: block;
+    background-image: url('../img/sprite.svg#small-black-arrow');
+    background-repeat: no-repeat;
+    background-position: center;
+    right: -10px;
+  }
+}
+
+.cards__image {
+  width: 60%;
+  display: flex;
+  margin: 0 auto;
+  padding-bottom: 200px;
+  @include md-block {
+    width: 20%;
+  }
 }

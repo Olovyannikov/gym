@@ -1,7 +1,6 @@
 @import "general/variables";
 @import "vendor/normalize";
 @import "general/fonts";
-@import "general/rem-calc";
 @import "vendor/smart-grid";
 @import "general/mixins";
 @import "general/scaffoldings";
@@ -22,3 +21,5 @@
 @import "blocks/about/about";
 @import "blocks/intro/intro";
 @import "blocks/cards/cards";
+@import "blocks/post-scriptum/post-scriptum";
+@import "blocks/footer/footer";
