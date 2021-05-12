@@ -29,6 +29,9 @@
   align-items: center;
   position: relative;
   flex-wrap: wrap;
+  @include lg-block {
+    position: static;
+  }
 }
 
 .header__left {

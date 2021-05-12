@@ -31,10 +31,11 @@
           <nav class="header__nav nav" id="nav">
             <ul class="nav__list">
               <li class="nav__item"><a class="nav__link nav__link_hasSubMenu" href="#">Виды двигательной деятельности
-                  <!--svg(width=9 height=34).svg-chevronuse(href='#chevron')
-                  --></a>
+                  <svg class="svg-chevron" width="9" height="34">
+                    <use href="#chevron" stroke="#000"></use>
+                  </svg></a>
                 <ul class="nav__submenu">
-                  <li class="nav__submenu-item">
+                  <li class="nav__submenu-item nav__submenu-item-100">
                     <div class="nav__submenu-sex">Пол
                       <label class="nav__submenu-label" for="male">Мужской
                         <input class="nav__submenu-radio" value="male" type="radio" checked="true" name="sex" id="male"/><span class="nav__submenu-element"></span>
@@ -188,6 +189,22 @@
           <li class="footer__nav-item"><a class="footer__nav-link" href="#">Спонсоры</a></li>
           <li class="footer__nav-item"><a class="footer__nav-link" href="#">Разработчики</a></li>
           <li class="footer__nav-item"><a class="footer__nav-link" href="#"> Контакты</a></li>
+          <li class="footer__nav-item">
+            <ul class="footer__social social">
+              <li class="social__item"><a class="social__link" href="#">Facebook
+                  <svg class="social__link-svg" width="21" height="21">
+                    <use href="#fb"></use>
+                  </svg></a></li>
+              <li class="social__item"><a class="social__link" href="#">Instagram
+                  <svg class="social__link-svg" width="21" height="21">
+                    <use href="#in"></use>
+                  </svg></a></li>
+              <li class="social__item"><a class="social__link" href="#">Youtube
+                  <svg class="social__link-svg" width="21" height="21">
+                    <use href="#yt"></use>
+                  </svg></a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </footer>

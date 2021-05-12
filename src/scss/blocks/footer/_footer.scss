@@ -1,4 +1,7 @@
 .footer {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
   background: #e6e6e6;
 }
 
@@ -9,4 +12,10 @@
   padding-top: 40px;
   padding-bottom: 60px;
   font-size: rem-calc(14);
+  width: 50%;
+  margin: 0 auto;
+}
+
+.footer__social {
+  font-size: 0;
 }

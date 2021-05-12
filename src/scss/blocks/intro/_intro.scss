@@ -31,6 +31,7 @@
   align-items: center;
   gap: 30px;
   overflow: visible;
+  z-index: 1;
 }
 
 .intro__list-item {
@@ -40,15 +41,18 @@
   align-items: center;
   text-align: center;
   overflow: visible;
+
   svg {
     width: 40px;
     height: 40px;
     fill: #61be6a;
     margin-bottom: 60px;
   }
+
   span {
     width: 70%;
   }
+
   &::after {
     position: absolute;
     content: '';
@@ -59,13 +63,20 @@
     background-size: 100%;
     top: 40%;
   }
+
   &:first-child::after {
     z-index: 10;
   }
+
   &:nth-child(2)::after {
     z-index: 9;
   }
-  &:last-child::after {
+
+  &:nth-child(3)::after {
     z-index: 8;
+  }
+
+  &:last-child::after {
+    z-index: -1;
   }
 }

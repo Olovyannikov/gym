@@ -12,20 +12,26 @@
   height: 100vh;
   box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
   width: 75%;
+
   &_active {
     left: 0;
     overflow: scroll;
+    @include lg-block {
+      overflow: auto;
+    }
 
     &::-webkit-scrollbar {
       appearance: none;
     }
   }
+
   @include lg-block {
     position: static;
     width: auto;
     height: auto;
     padding-left: 70px;
     padding-top: 0;
+    padding-bottom: 0;
     box-shadow: none;
     flex-direction: row;
     align-items: center;
@@ -35,7 +41,7 @@
 .nav__item {
   margin-bottom: 20px;
 
-  @media (max-width: 1335px) {
+  @media (min-width: 568px) {
     &:not(:last-child) {
       margin-right: 35px;
     }
@@ -62,13 +68,17 @@
   //margin-bottom: 20px;
 
   &_hasSubMenu {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     svg {
-      position: absolute;
-      top: 0;
-      right: 10%;
+      width: 8px;
+      object-fit: cover;
       transition: .3s;
+      @include lg-block {
+        display: none;
+      }
     }
   }
 }
@@ -79,6 +89,7 @@
   @include list-reset;
   opacity: 0;
   max-height: 0;
+  width: 0;
   overflow: hidden;
   transition: opacity 200ms linear, max-height 200ms linear;
   will-change: opacity, max-height;
@@ -90,21 +101,51 @@
   }
 
   + .nav__submenu {
+    position: relative;
     margin-top: 20px;
     opacity: 1;
-    max-height: 100%;
     transition: all 200ms linear;
     will-change: opacity, max-height;
+    background: #fff;
+    width: 100%;
+    max-height: 100%;
+    @include lg-block {
+      max-height: fit-content;
+      position: absolute;
+      left: 0;
+      box-shadow: -2px -2px 2px rgba(0, 0, 0, .5);
+      display: flex;
+      flex-wrap: wrap;
+      width: 100vw;
+    }
   }
 }
 
 .nav__submenu-item {
   margin-bottom: 60px;
+
   &:last-child {
     margin-bottom: 30px;
   }
+
   &:first-child {
     text-transform: lowercase;
+  }
+
+  @include lg-block {
+    margin-top: 40px;
+    margin-left: 13%;
+    display: flex;
+    align-items: center;
+    div:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+
+  &-100 {
+    @include lg-block {
+      width: 100%;
+    }
   }
 }
 
@@ -163,6 +204,10 @@
 
   input {
     width: 15%;
+  }
+
+  @include lg-block {
+    margin-top: 0;
   }
 }
 
