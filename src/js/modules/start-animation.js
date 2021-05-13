@@ -1,5 +1,7 @@
-const startAnimation = () => {
+import {accordion} from "./accordion";
 
+const startAnimation = () => {
+    accordion();
     const $header = document.querySelector('.js-header');
     let scrollPrev = 0;
 

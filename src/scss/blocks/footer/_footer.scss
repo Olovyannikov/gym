@@ -8,12 +8,14 @@
 .footer__nav {
   @include list-reset;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding-top: 40px;
   padding-bottom: 60px;
   font-size: rem-calc(14);
   width: 50%;
   margin: 0 auto;
+  gap: 20px;
 }
 
 .footer__social {

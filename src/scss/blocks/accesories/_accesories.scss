@@ -1,0 +1,30 @@
+.accesories-list {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include xs-block {
+    flex-wrap: nowrap;
+  }
+}
+
+.accesories-list__item {
+  display: flex;
+  flex-direction: column;
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+  img {
+    height: 240px;
+    margin-bottom: 40px;
+  }
+}
+
+.accesories-list__descr {
+  @include list-reset;
+  li {
+    margin-bottom: 20px;
+    line-height: rem-calc(20);
+  }
+}

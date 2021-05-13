@@ -9,9 +9,10 @@
 @import "blocks/header/header";
 @import "blocks/social/social";
 @import "blocks/nav/nav";
+@import "components/accordion/accordion";
 //@import "blocks/main/main";
-//@import "blocks/lessons/lessons";
-//@import "blocks/breadcrumbs/breadcrumbs";
+@import "blocks/lessons/lessons";
+@import "blocks/breadcrumbs/breadcrumbs";
 //@import "blocks/accordion/accordion";
 //@import "blocks/articles/articles";
 //@import "blocks/exercise/exercise";
@@ -23,4 +24,13 @@
 @import "blocks/cards/cards";
 @import "blocks/post-scriptum/post-scriptum";
 @import "blocks/run/run";
+@import "blocks/reccomendations/reccomendations";
+@import "blocks/accesories/accesories";
+@import "blocks/technique/technique";
 @import "blocks/footer/footer";
+
+.start__wrapper {
+  min-height: 380px;
+  background: url("../img/svg/people-bg.svg") no-repeat  center/cover;
+  padding-top: 40px;
+}

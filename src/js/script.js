@@ -1,10 +1,10 @@
 //import modules
 import gsap from "gsap";
 import bezier from "./vendor/bezier";
+import {default as menu} from './modules/menu-toggle';
 
 bezier();
 import startAnimation from "./modules/start-animation";
-import {default as toggleMenu} from "./modules/menu-toggle";
 
 const init = () => {
   window.onload = function () {
@@ -19,12 +19,10 @@ const init = () => {
     }, 3000);
     setTimeout(() => {
       startAnimation();
-      toggleMenu();
+      menu();
       preloader.classList.add('preloader-none');
     }, 3200);
   }
-
-
 }
 
 init();

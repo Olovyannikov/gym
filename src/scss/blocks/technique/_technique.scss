@@ -1,0 +1,11 @@
+.article__wrapper {
+  @include col;
+  @include size(10.5);
+  margin: 0 auto;
+}
+
+.article__title {
+  margin-bottom: 40px;
+}
+
+

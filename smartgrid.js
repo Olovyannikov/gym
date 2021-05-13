@@ -4,7 +4,7 @@ module.exports = {
     offset: '20px',
     mobileFirst: true,
     container: {
-        maxWidth: '1440px',
+        maxWidth: '1240px',
         fields: '24px'
     },
     breakPoints: {

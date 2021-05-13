@@ -253,10 +253,10 @@ const grid = (callback) => {
   callback();
 }
 
-exports.default = series(clean, grid, pug2html, scripts, styles, resources, fonts, images, svgSprites, watchFiles);
+exports.default = series(clean, grid, images, svgSprites, pug2html, scripts, styles, resources, fonts,  watchFiles);
 
-exports.build = series(toProd, grid, clean, pug2html, scripts, styles, resources, fonts, images, svgSprites);
+exports.build = series(toProd, clean, grid, images, svgSprites, pug2html, scripts, styles, resources, fonts);
 
 exports.cache = series(cache, rewrite);
 
-exports.backend = series(toProd, grid, clean, pug2html, stylesBackend, resources, fonts, images, svgSprites);
+exports.backend = series(toProd, grid, clean, images, svgSprites, pug2html, stylesBackend, resources, fonts );

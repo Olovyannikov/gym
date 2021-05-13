@@ -1,0 +1,67 @@
+section.start
+    .start__wrapper
+        .container
+            h1.title.start__title С чего начать?
+
+section.lessons
+    .lessons__container.container
+        h1.lessons__title.title Занятия
+        ul.breadcrumbs
+            li.breadcrumbs__item
+                a(href='/').breadcrumbs__link главная
+            li.breadcrumbs__item
+                a.breadcrumbs_link.breadcrumbs_link_current занятия
+        p.lesson__intro Введите данные и мы подберем занятие для вас:
+        .nav__submenu-item
+            .nav__submenu-sex Пол
+                label.nav__submenu-label(for='male') Мужской
+                    input.nav__submenu-radio(value='male' type='radio' checked='true' name='sex' id='male')
+                    span.nav__submenu-element
+                label.nav__submenu-label(for='female') Женский
+                    input.nav__submenu-radio(value='female' type='radio' name='sex' id='female')
+                    span.nav__submenu-element
+                label.nav__submenu-label(for='age2') Возраст
+                input.nav__submenu-input(type='text' name='age' id='age2')
+        .lessons__lists
+            .lesson__group
+                h3.lesson__group-title Цикличные
+                ul.lessons__list
+                    li Ходьба
+                    li Езда на велосипеде
+                    li
+                        a(href='lessons/run') Бег
+                    li Лыжная подготовка
+                    li Катание на коньках
+                    li Скандинавская ходьба
+                    li Плавание
+            .lesson__group
+                h3.lesson__group-title Игровые
+                ul.lessons__list
+                    li Футбол
+                    li Волейбол
+                    li Баскетбол
+                    li Хоккей
+                    li Подвижные игры с детьми
+            .lesson__group
+                h3.lesson__group-title Комплексные виды активности
+                ul.lessons__list
+                    li Йога
+                    li Воркаут
+                    li Фитнес
+                    li Различные виды танцев
+                    li Аэробика
+                    li Атлетическая гимнастика
+        p.lesson__warning * требуется инвентарь
+        .lesson__cards.cards__list
+            .lesson__card.cards__list-item
+                h4.lesson__title Занятие
+                p.lesson__descr Выбери свой уровень и выполни упражнения
+                a(href='lesson.html').btn.green.lesson__link далее
+            .lesson__card.cards__list-item
+                h4.lesson__title Глоссарий
+                p.lesson__descr Узнай историю и интересные факты
+                a(href='glossary.html').btn.green.lesson__link далее
+            .lesson__card.cards__list-item
+                h4.lesson__title График занятий
+                p.lesson__descr Составить график занятий на неделю, месяц и т.д.
+                a(href='schedule.html').btn.green.lesson__link далее
