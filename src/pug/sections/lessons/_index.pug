@@ -6,17 +6,24 @@ section.lessons
                 a(href='/').breadcrumbs__link главная
             li.breadcrumbs__item
                 a.breadcrumbs_link.breadcrumbs_link_current занятия
-        p.lesson__intro Введите данные и мы подберем занятие для вас:
+        p
+            b.lesson__intro Введите данные и мы подберем занятие для вас:
         .nav__submenu-item
-            .nav__submenu-sex Пол
-                label.nav__submenu-label(for='male') Мужской
-                    input.nav__submenu-radio(value='male' type='radio' checked='true' name='sex' id='male')
+            .nav__submenu-sex
+                span.lessons__sex пол
+                label.nav__submenu-label(for='male2') мужской
+                    input.nav__submenu-radio(value='male2' type='radio' checked='true' name='sex' id='male2')
                     span.nav__submenu-element
-                label.nav__submenu-label(for='female') Женский
-                    input.nav__submenu-radio(value='female' type='radio' name='sex' id='female')
+                label.nav__submenu-label(for='female2') женский
+                    input.nav__submenu-radio(value='female2' type='radio' name='sex' id='female2')
                     span.nav__submenu-element
-                label.nav__submenu-label(for='age2') Возраст
-                input.nav__submenu-input(type='text' name='age' id='age2')
+                label.nav__submenu-label(for='age2' style='width: 10%') возраст
+                    input.nav__submenu-input(type='text' name='age' id='age2')
+                label.nav__submenu-label занятия будут проходить
+                    select.nav__submenu-select(style='width: 150px')
+                        option на улице
+                        option на луне
+                button.btn.green поиск
         .lessons__lists
             .lesson__group
                 h3.lesson__group-title Цикличные

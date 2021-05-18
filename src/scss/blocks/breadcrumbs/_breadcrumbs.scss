@@ -3,12 +3,16 @@
   display: flex;
   margin-top: 10px;
   margin-bottom: 40px;
+
+  li:last-child a::after {
+    content: '';
+  }
 }
 
 .breadcrumbs__link {
-  &:first-child {
+
     &::after {
       content: '/';
     }
-  }
+
 }

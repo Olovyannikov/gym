@@ -16,7 +16,8 @@
     width: 100%;
     padding-top: 27px;
     padding-bottom: 27px;
-    padding-left: 0;
+    padding-left: 40px;
+    padding-right: 40px;
     color: #000;
     font-size: rem-calc(14);
     line-height: rem-calc(20);
@@ -44,7 +45,7 @@
       display: block;
       position: absolute;
       top: 50%;
-      right: 0;
+      right: 40px;
       width: 15px;
       height: 15px;
       border-radius: 22px;
@@ -67,6 +68,7 @@
     }
   }
   .accordion-content {
+    padding: 0 40px;
     hr {
       margin: 0 auto;
       margin-bottom: 20px;

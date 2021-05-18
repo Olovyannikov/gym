@@ -93,9 +93,8 @@ img {
 }
 
 .wrapper {
-  max-width: 1710px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 main {
@@ -113,7 +112,8 @@ main {
 }
 
 .btn {
-  @include list-reset;
+  @include btn-reset;
+  text-transform: lowercase;
   border-radius: 19px;
   font-family: inherit;
   color: #000000;
